@@ -1,0 +1,27 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: gray-service
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      gated-launch: false
+      service-version: 0.1
+      UserId: xxxxxxxxxxxx
+
+
+info:
+  app:
+    name: gray-release-test
+    encoding: UTF-8
+    java:
+      source: 1.8.0_151
+  contact:
+    email: jq.deng@hnair.com
+    phone: 13888888888
