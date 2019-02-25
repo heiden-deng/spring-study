@@ -1,0 +1,4 @@
+com/example/ocdemo/controller/HttpClientController.class
+com/example/ocdemo/OcDemoApplication.class
+com/example/ocdemo/service/OCService.class
+com/example/ocdemo/controller/OCRestController.class
