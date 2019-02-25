@@ -13,6 +13,10 @@ public interface JpaUserRepository extends JpaRepository<User,Long>{
     @Query("from user where user_name like concat('%',?1,'%') and note like concat('',?2,'%')")
     public List<User> getUsers(String userName, String note);
 
+    List<User> findUsersByUserNameIsLike(String userName);
+
+    User getUsersById(Long id);
+
 
 
 
