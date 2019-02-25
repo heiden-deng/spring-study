@@ -1,0 +1,17 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123456@test-dbp12eureka.caas.hnagroup.com/eureka/
+
+#以后的服务与服务之间相互调用一般都是根据这个name
+spring:
+  application:
+    name: service-test
+server:
+  port: 9001
+management:
+  security:
+    enabled: false
+
+info:
+  version: "@project.version@"
