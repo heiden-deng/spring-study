@@ -1,0 +1,9 @@
+server:
+  port: 9300
+spring:
+  application:
+    name: springms-file-upload
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
