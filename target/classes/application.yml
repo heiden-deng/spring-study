@@ -1,0 +1,84 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: root
+    password: 123456
+
+
+---
+spring:
+  profiles: single
+  application:
+    name:  EUREKA-SINGLE
+server:
+  port: 8100
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@127.0.0.1:8100/eureka
+    registry-fetch-interval-seconds: 4000
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: true
+
+---
+spring:
+  profiles: discovery1
+  application:
+    name:  EUREKA-HA
+server:
+  port: 8100
+eureka:
+  instance:
+    #preferIpAddress: false
+    hostname: eureka-peer1
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@eureka-peer2:8101/eureka,http://root:123456@eureka-peer1:8100/eureka,http://root:123456@eureka-peer3:8102/eureka
+    registry-fetch-interval-seconds: 4000
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: true
+
+---
+spring:
+  profiles: discovery2
+  application:
+    name:  EUREKA-HA
+server:
+  port: 8101
+eureka:
+  instance:
+    #preferIpAddress: false
+    hostname: eureka-peer2
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@eureka-peer1:8100/eureka,http://root:123456@eureka-peer2:8101/eureka,http://root:123456@eureka-peer3:8102/eureka
+    registry-fetch-interval-seconds: 4000
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: true
+
+---
+spring:
+  profiles: discovery3
+  application:
+    name:  EUREKA-HA
+server:
+  port: 8102
+eureka:
+  instance:
+    #preferIpAddress: false
+    hostname: eureka-peer3
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@eureka-peer1:8100/eureka,http://root:123456@eureka-peer2:8101/eureka,http://root:123456@eureka-peer3:8102/eureka
+    registry-fetch-interval-seconds: 4000
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: true
