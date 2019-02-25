@@ -1,0 +1,4 @@
+com/heiden/cloud/study/ribbon/controller/HelloController.class
+com/heiden/cloud/study/ribbon/service/JWTService.class
+com/heiden/cloud/study/ribbon/ServiceRibbonApplication.class
+com/heiden/cloud/study/ribbon/service/HelloService.class
