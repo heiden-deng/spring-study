@@ -1,0 +1,4 @@
+server:
+  port: 8080
+iamtest:
+  callbackurl: http://dbp-sso.hnaresearch.com:86/callback
