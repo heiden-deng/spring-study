@@ -1,0 +1,40 @@
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.hna.tech.dmpcomment.entity
+spring:
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      #time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://10.126.5.40:3306/DMP?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: test
+    password: welcomeTo#233
+    #url: jdbc:mysql://127.0.0.1:3306/dmp_comment?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    #username: root
+    #password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: COMMUNICATION-NEW
+
+uuid: ${random.uuid}
+server:
+  port: 8080
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${uuid}
+    lease-expiration-duration-in-seconds: 3
+    lease-renewal-interval-in-seconds: 1
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://10.126.1.231:2333/eureka/,http://10.126.1.232:2333/eureka/,http://10.126.1.233:2333/eureka/
+      #defaultZone: http://root:123456@127.0.0.1:8761/eureka/
+
+
+
+
+
+

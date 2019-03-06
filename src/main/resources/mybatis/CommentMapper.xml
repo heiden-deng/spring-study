@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hna.tech.dmpcomment.dao.DmpCommentMapper" >
+    <resultMap id="BaseResultMap" type="com.hna.tech.dmpcomment.entity.DmpComment" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="product_id" property="product_id" jdbcType="INTEGER" />
+        <result column="company_id" property="company_id" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="INTEGER" />
+        <result column="create_time" property="create_time"/>
+        <result column="category" property="category" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+       select * from dmp_comment where id=#{id}
+    </select>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+       select *
+       from dmp_comment
+       where user_id=#{user_id}
+       ORDER by create_time desc
+    </select>
+    <select id="selectSubComment" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select *
+        from dmp_comment
+        where pid=#{pid}
+        ORDER by create_time desc
+    </select>
+    <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select *
+        from dmp_comment
+        where product_id=#{product_id}
+        ORDER by create_time desc
+    </select>
+    <select id="selectComments" resultMap="BaseResultMap" parameterType="com.hna.tech.dmpcomment.entity.DmpComment" >
+        select *
+        from dmp_comment
+        where  1=1
+        <if test="id > -1">
+            and id=#{id}
+        </if>
+        <if test="null != title and '' != title">
+            and title like concat('%', #{title}, '%')
+        </if>
+        <if test="pid > -1">
+            and pid=#{pid}
+        </if>
+        <if test="product_id > -1">
+            and product_id=#{product_id}
+        </if>
+        <if test="company_id > -1">
+            and company_id=#{company_id}
+        </if>
+        <if test=" user_id > -1">
+            and user_id=#{user_id}
+        </if>
+        <if test="null != create_time">
+            and create_time=#{create_time}
+        </if>
+        <if test="category > -1">
+            and category=#{category}
+        </if>
+        <if test="status > -1">
+            and status=#{status}
+        </if>
+        ORDER by create_time desc
+    </select>
+    <select id="findPageBreakByCondition" parameterType="com.hna.tech.dmpcomment.vo.DmpCommentConditionVo" resultMap="BaseResultMap">
+        select *
+        from dmp_comment
+        WHERE 1=1
+    </select>
+    <insert id="insert" parameterType="com.hna.tech.dmpcomment.entity.DmpComment">
+        insert into
+        dmp_comment(title,content,pid,product_id,company_id,user_id,create_time,category,status)
+        values(
+        #{title,jdbcType=VARCHAR},
+        #{content,jdbcType=VARCHAR},
+        #{pid,jdbcType=INTEGER},
+        #{product_id,jdbcType=INTEGER},
+        #{company_id,jdbcType=INTEGER},
+        #{user_id,jdbcType=INTEGER},
+        #{create_time},
+        #{category,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.hna.tech.dmpcomment.entity.DmpComment" >
+        insert into dmp_comment
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="pid != null" >
+                pid,
+            </if>
+            <if test="product_id != null" >
+                product_id,
+            </if>
+            <if test="company_id != null" >
+                company_id,
+            </if>
+            <if test="user_id != null" >
+                user_id,
+            </if>
+            <if test="create_time != null" >
+                create_time,
+            </if>
+            <if test="category != null" >
+                category,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null" >
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="product_id != null" >
+                #{product_id,jdbcType=INTEGER},
+            </if>
+            <if test="company_id != null" >
+                #{company_id,jdbcType=INTEGER},
+            </if>
+            <if test="user_id != null" >
+                #{user_id,jdbcType=INTEGER},
+            </if>
+            <if test="create_time != null" >
+                #{create_time,jdbcType=DATE},
+            </if>
+            <if test="category != null" >
+                #{category,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from dmp_comment where id=#{id}
+    </delete>
+
+</mapper>
