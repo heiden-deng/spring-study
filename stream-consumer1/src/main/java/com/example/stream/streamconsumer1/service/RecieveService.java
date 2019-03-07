@@ -1,3 +1,4 @@
+/*
 package com.example.stream.streamconsumer1.service;
 
 
@@ -13,3 +14,4 @@ public class RecieveService {
         System.out.println(payload);
     }
 }
+*/

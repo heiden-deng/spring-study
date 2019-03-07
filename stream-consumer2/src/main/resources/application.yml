@@ -11,8 +11,8 @@ spring:
           zk-nodes: localhost:2181
           auto-create-topics: true
       bindings:
-        MyInput:
-          destination: stream-demo
+        input:
+          destination: stream-demo-trans
           content-type: text/plain
 
 
