@@ -9,7 +9,7 @@ spring:
           zk-nodes: localhost:2181
           auto-create-topics: true
       bindings:
-        output:
+        MyOutput:
           destination: stream-demo
           content-type: text/plain
 
